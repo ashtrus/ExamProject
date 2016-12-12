@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ExamProject.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +11,35 @@ namespace ExamProject.Controllers
 {
     public class HomeController : Controller
     {
+
+       
+        [Authorize]
         public ActionResult Index()
         {
-            return View();
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+            string userId = User.Identity.GetUserId();
+
+            var user = userManager.FindById(userId);
+            //var company = user.Company;
+
+            //Redirect if not ADMIN 
+            if (!User.IsInRole("Admin"))
+            {
+                return View(/*notAuth()*/);
+            }
+
+            return View(); //Company 
         }
 
+    
+
+
+        // public ActionResult Index ()
+        //{
+        //    return View(); 
+        //}
+       
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

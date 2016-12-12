@@ -16,6 +16,10 @@ namespace ExamProject.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+
+
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -25,9 +29,20 @@ namespace ExamProject.Models
         {
         }
 
+        
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
     }
 }
+
+
+
