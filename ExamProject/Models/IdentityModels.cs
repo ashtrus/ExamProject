@@ -24,8 +24,8 @@ namespace ExamProject.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public ApplicationDbContext() //constructor
+            : base("DefaultConnection", throwIfV1Schema: false)  // configure connection and create database
         {
         }
 
@@ -41,6 +41,8 @@ namespace ExamProject.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<ExamProject.Models.Skill> Skills { get; set; }
     }
 }
 
