@@ -21,11 +21,11 @@ namespace ExamProject.Models
         public string Picture { get; set; } // file upload
 
         public virtual ICollection<SkillExperience> SkillExperience { get; set; }
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<CompanyRole> CompanyRoles { get; set; }
 
         public virtual Skill Skill { get; set; }  // relationship
 
-        public Role[] CurrentRoles = new Role[3];  // show level for each skill. how??
+        public CompanyRole[] CurrentRoles = new CompanyRole[3];  // show level for each skill. how??
 
     }
 }

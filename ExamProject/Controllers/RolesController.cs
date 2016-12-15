@@ -27,7 +27,7 @@ namespace ExamProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
+            CompanyRole role = db.CompanyRoles.Find(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -46,11 +46,11 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RoleId,UserId,Title,Description,Experience,SelectedOn")] Role role)
+        public ActionResult Create([Bind(Include = "RoleId,UserId,Title,Description,Experience,SelectedOn")] CompanyRole role)
         {
             if (ModelState.IsValid)
             {
-                db.Roles.Add(role);
+                db.CompanyRoles.Add(role);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace ExamProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
+            CompanyRole role = db.CompanyRoles.Find(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RoleId,UserId,Title,Description,Experience,SelectedOn")] Role role)
+        public ActionResult Edit([Bind(Include = "RoleId,UserId,Title,Description,Experience,SelectedOn")] CompanyRole role)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace ExamProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
+            CompanyRole role = db.CompanyRoles.Find(id);
             if (role == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace ExamProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Role role = db.Roles.Find(id);
-            db.Roles.Remove(role);
+            CompanyRole role = db.CompanyRoles.Find(id);
+            db.CompanyRoles.Remove(role);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

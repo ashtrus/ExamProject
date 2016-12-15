@@ -50,7 +50,7 @@ namespace ExamProject.Migrations
                 {
                     var user = new ApplicationUser { UserName = "admin@kea.dk", Email = "admin@kea.dk" };
 
-                    string userPWD = "123321";
+                    string userPWD = "Passw0rd!";
 
                     var chkUser = userManager.Create(user, userPWD);
 
@@ -74,23 +74,23 @@ namespace ExamProject.Migrations
             }
 
             // 
-            if (!userManager.Users.Any(x => x.UserName == "admin@kea.dk"))
-            {
-                var user = new ApplicationUser { UserName = "admin@kea.dk", Email = "admin@kea.dk" };
+            //if (!userManager.Users.Any(x => x.UserName == "admin@kea.dk"))
+            //{
+            //    var user = new ApplicationUser { UserName = "admin@kea.dk", Email = "admin@kea.dk" };
 
-                string userPWD = "123321";
+            //    string userPWD = "123321";
 
-                var chkUser = userManager.Create(user, userPWD);
+            //    var chkUser = userManager.Create(user, userPWD);
 
-                //Add default User to Role Admin   
-                if (chkUser.Succeeded)
-                {
-                    var result1 = userManager.AddToRole(user.Id, "Admin");
-                }
-            }
+            //    //Add default User to Role Admin   
+            //    if (chkUser.Succeeded)
+            //    {
+            //        var result1 = userManager.AddToRole(user.Id, "Admin");
+            //    }
+            //}
 
-            var adminUser = userManager.Users.First(x => x.UserName == "admin@kea.dk");
-            Debug.WriteLine($"{adminUser.UserName} exists");
+            //var adminUser = userManager.Users.First(x => x.UserName == "admin@kea.dk");
+            //Debug.WriteLine($"{adminUser.UserName} exists");
         }
        
     }

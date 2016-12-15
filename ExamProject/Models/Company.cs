@@ -13,7 +13,7 @@ namespace ExamProject.Models
         public string Phone { get; set; }
         public string Logo { get; set; } // file upload, base64 or a link?
         public virtual ICollection<Skill> Skills { get; set; }
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<CompanyRole> CompanyRoles { get; set; }
         public virtual List<Employee> Employees { get; set; }
         public virtual List<Achievement> Achievements { get; set; }
     }
