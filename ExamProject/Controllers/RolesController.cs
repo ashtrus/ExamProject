@@ -51,6 +51,7 @@ namespace ExamProject.Controllers
             if (ModelState.IsValid)
             {
                 db.CompanyRoles.Add(role);
+                //jyguygi
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
