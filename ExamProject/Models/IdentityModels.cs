@@ -23,13 +23,14 @@ namespace ExamProject.Models
 
         // [Required(ErrorMessage = "FirstName is requiered")]
         public string Firstname { get; set; }
-        [Required(ErrorMessage = "Lastname is requiered")]
+       
         public string Lastname { get; set; }
         [Required(ErrorMessage = "Email is requiered")]
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Picture { get; set; } // file upload
-
+        public virtual Company Company { get; set; }
+        public int CompanyId { get; set; }
         public virtual ICollection<SkillExperience> SkillExperience { get; set; }
         public virtual ICollection<CompanyRole> CompanyRoles { get; set; }
 
@@ -44,7 +45,7 @@ namespace ExamProject.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext() //constructor
-            : base("DefaultConnection", throwIfV1Schema: false)  // configure connection and create database
+            : base("examdb", throwIfV1Schema: false)  // configure connection and create database
         {
         }
 
