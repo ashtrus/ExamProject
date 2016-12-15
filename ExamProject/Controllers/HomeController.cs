@@ -16,6 +16,12 @@ namespace ExamProject.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            Employee e = db.Employee.Find(1);
+           // List<SkillExperience> eSkills = db.SkillExperience.Where(i => i.EmployeeId == e.EmployeeId).toList();
+            e.SkillExperience
+
+                SkillExperience se = db.SkillExperience.Find(1);
+            se.Skill.Name
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
             string userId = User.Identity.GetUserId();

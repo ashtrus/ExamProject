@@ -12,12 +12,9 @@ namespace ExamProject.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Logo { get; set; } // file upload, base64 or a link?
-
-        public List<Role> Roles { get; set; }
-        public List<Employee> Employees { get; set; }
-        public List<Achievement> Achievements = new List<Achievement>();
-
-
-
+        public virtual ICollection<Skill> Skills { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
+        public virtual List<Employee> Employees { get; set; }
+        public virtual List<Achievement> Achievements { get; set; }
     }
 }

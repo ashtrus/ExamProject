@@ -30,8 +30,15 @@ namespace ExamProject.Migrations
             //    );
             //
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-           //userManager.Create
 
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            string role = "Admin";
+            //Create Role Admin if it does not exist
+            if (!roleManager.RoleExists(role))
+            {
+                var roleResult = roleManager.Create(new IdentityRole(role));
+            }
 
         }
        
