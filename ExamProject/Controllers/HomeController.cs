@@ -11,34 +11,37 @@ namespace ExamProject.Controllers
 {
     public class HomeController : Controller
     {
-
        
-        [Authorize]
-        public ActionResult Index()
+        private ApplicationDbContext db = new ApplicationDbContext(); 
+
+
+        /*
+         [Authorize]
+         public ActionResult Index()
+         {
+             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+             string userId = User.Identity.GetUserId();
+
+             var user = userManager.FindById(userId);
+             //var company = user.Company;
+
+             //Redirect if not ADMIN 
+             if (!User.IsInRole("Admin"))
+             {
+                 return View(notAuth());
+             }
+
+             return View(); //Company 
+         }*/
+
+
+
+
+        public ActionResult Index ()
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-
-            string userId = User.Identity.GetUserId();
-
-            var user = userManager.FindById(userId);
-            //var company = user.Company;
-
-            //Redirect if not ADMIN 
-            if (!User.IsInRole("Admin"))
-            {
-                return View(/*notAuth()*/);
-            }
-
-            return View(); //Company 
+           return View(); 
         }
-
-    
-
-
-        // public ActionResult Index ()
-        //{
-        //    return View(); 
-        //}
        
         public ActionResult About()
         {
@@ -53,5 +56,13 @@ namespace ExamProject.Controllers
 
             return View();
         }
+       
+
+        public ActionResult Company()
+        {
+            return View(); 
+        }
+
+     
     }
 }

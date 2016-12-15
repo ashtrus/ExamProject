@@ -198,8 +198,21 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612131242465_Upload.cs" />
+    <Compile Include="Migrations\201612131242465_Upload.Designer.cs">
+      <DependentUpon>201612131242465_Upload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612141212367_2.cs" />
+    <Compile Include="Migrations\201612141212367_2.Designer.cs">
+      <DependentUpon>201612141212367_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612150912252_3.cs" />
+    <Compile Include="Migrations\201612150912252_3.Designer.cs">
+      <DependentUpon>201612150912252_3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -273,9 +286,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Upload\UploadFile.cshtml" />
+    <Content Include="Views\Upload\Company.cshtml" />
+    <Content Include="Views\Home\CompanyDisplayData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -284,6 +301,17 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612131242465_Upload.resx">
+      <DependentUpon>201612131242465_Upload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612141212367_2.resx">
+      <DependentUpon>201612141212367_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612150912252_3.resx">
+      <DependentUpon>201612150912252_3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

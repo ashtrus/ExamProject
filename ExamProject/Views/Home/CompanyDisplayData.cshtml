@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ExamProject.Models.Company>
+
+@{
+    ViewBag.Title = "CompanyDisplayData";
+}
+
+
+<h2> Company Profile Data </h2>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+           @Html.DisplayFor(modelItem => item.Logo)
+        </td>
+    </tr>
+}
