@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ExamProject.Models
 {
@@ -25,12 +26,13 @@ namespace ExamProject.Models
         public string Firstname { get; set; }
        
         public string Lastname { get; set; }
-        [Required(ErrorMessage = "Email is requiered")]
-        public string Email { get; set; }
+        //[Required(ErrorMessage = "Email is requiered")]
+        //public string Email { get; set; }
         public string Phone { get; set; }
         public string Picture { get; set; } // file upload
+        [ForeignKey("CompanyId")]
         public virtual Company Company { get; set; }
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         public virtual ICollection<SkillExperience> SkillExperience { get; set; }
         public virtual ICollection<CompanyRole> CompanyRoles { get; set; }
 

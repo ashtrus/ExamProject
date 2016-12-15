@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Web.UI.WebControls;
 
 namespace ExamProject.Models
 {
@@ -80,8 +82,16 @@ namespace ExamProject.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
 
+        [Required]
+        public string Phone { get; set; }
+
+        [Required]
+        public HttpPostedFileBase Picture { get; set; }
 
     }
 
