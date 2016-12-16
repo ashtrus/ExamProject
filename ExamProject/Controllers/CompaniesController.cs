@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ExamProject.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ExamProject.Controllers
 {
+    [Authorize]
     public class CompaniesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -35,6 +37,7 @@ namespace ExamProject.Controllers
             return View(company);
         }
 
+
         // GET: Companies/Create
         public ActionResult Create()
         {
@@ -51,6 +54,14 @@ namespace ExamProject.Controllers
             if (ModelState.IsValid)
             {
                 db.Companies.Add(company);
+                // find logged in user
+                var myId = User.Identity.GetUserId();
+                var me = db.Users.First(x => x.Id == myId);
+                // add this user to admins
+                if (company.Administrators == null)
+                    company.Administrators = new List<ApplicationUser>();
+                company.Administrators.Add(me);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -82,6 +93,8 @@ namespace ExamProject.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+
                 db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,6 +123,11 @@ namespace ExamProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Company company = db.Companies.Find(id);
+            var myId = User.Identity.GetUserId();
+            if (company.Administrators.All(x => x.Id != myId))
+            {
+                return Content("No luck sinjor... Need to be an admin!!!");
+            }
             db.Companies.Remove(company);
             db.SaveChanges();
             return RedirectToAction("Index");

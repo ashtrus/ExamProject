@@ -26,13 +26,6 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Phone)
@@ -51,6 +44,20 @@
         </dd>
 
     </dl>
+</div>
+
+<div>
+    @foreach (var admin in Model.Administrators)
+    {
+        <p>Administrator: @admin.Firstname @admin.Lastname</p>
+    }
+</div>
+
+<div>
+    @foreach (var employee in Model.Employees)
+    {
+        <p>Employee: @employee.Firstname @employee.Lastname</p>
+    }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyId }) |

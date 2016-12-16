@@ -17,6 +17,8 @@ namespace ExamProject.Models
         public virtual ICollection<Skill> Skills { get; set; }
         public virtual ICollection<CompanyRole> CompanyRoles { get; set; }
         public virtual List<ApplicationUser> Employees { get; set; }
+        public virtual List<ApplicationUser> Administrators { get; set; }
+
         public virtual List<Achievement> Achievements { get; set; }
     }
 }
