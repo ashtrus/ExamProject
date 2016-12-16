@@ -19,7 +19,9 @@ namespace ExamProject.Controllers
         // GET: Companies
         public ActionResult Index()
         {
-            return View(db.Companies.ToList());
+            var myId = User.Identity.GetUserId();
+            // return companies that I am an admin on.
+            return View(db.Companies.Where(x => x.Administrators.Any(a => a.Id == myId)).ToList());
         }
 
         // GET: Companies/Details/5
