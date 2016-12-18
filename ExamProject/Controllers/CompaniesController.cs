@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ExamProject.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ExamProject.Controllers
 {
+    [Authorize]
     public class CompaniesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -17,7 +19,9 @@ namespace ExamProject.Controllers
         // GET: Companies
         public ActionResult Index()
         {
-            return View(db.Companies.ToList());
+            var myId = User.Identity.GetUserId();
+            // return companies that I am an admin on.
+            return View(db.Companies.Where(x => x.Administrators.Any(a => a.Id == myId)).ToList());
         }
 
         // GET: Companies/Details/5
@@ -35,6 +39,7 @@ namespace ExamProject.Controllers
             return View(company);
         }
 
+
         // GET: Companies/Create
         public ActionResult Create()
         {
@@ -46,11 +51,19 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyId,Name,Email,Phone,Logo")] Company company)
+        public ActionResult Create([Bind(Include = "CompanyId,Name,Email,Password,Phone,Logo")] Company company)
         {
             if (ModelState.IsValid)
             {
                 db.Companies.Add(company);
+                // find logged in user
+                var myId = User.Identity.GetUserId();
+                var me = db.Users.First(x => x.Id == myId);
+                // add this user to admins
+                if (company.Administrators == null)
+                    company.Administrators = new List<ApplicationUser>();
+                company.Administrators.Add(me);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -78,10 +91,12 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyId,Name,Email,Phone,Logo")] Company company)
+        public ActionResult Edit([Bind(Include = "CompanyId,Name,Email,Password,Phone,Logo")] Company company)
         {
             if (ModelState.IsValid)
             {
+                
+
                 db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,6 +125,11 @@ namespace ExamProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Company company = db.Companies.Find(id);
+            var myId = User.Identity.GetUserId();
+            if (company.Administrators.All(x => x.Id != myId))
+            {
+                return Content("No luck sinjor... Need to be an admin!!!");
+            }
             db.Companies.Remove(company);
             db.SaveChanges();
             return RedirectToAction("Index");

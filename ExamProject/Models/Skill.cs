@@ -4,10 +4,10 @@ namespace ExamProject.Models
 {
     public class Skill
     {
-        public Skill()
-        {
-            SkillExperience = new List<SkillExperience>();
-        }
+        //public Skill()
+        //{
+        //    SkillExperience = new List<SkillExperience>();
+        //}
         public int SkillId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
