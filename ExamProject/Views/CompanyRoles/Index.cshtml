@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExamProject.Models.Role>
+﻿@model IEnumerable<ExamProject.Models.CompanyRole>
 
 @{
     ViewBag.Title = "Index";
@@ -12,16 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.Company.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Experience)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SelectedOn)
@@ -32,7 +29,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserId)
+            @Html.DisplayFor(modelItem => item.Company.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -41,15 +38,12 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Experience)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.SelectedOn)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RoleId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RoleId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RoleId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.CompanyRoleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CompanyRoleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyRoleId })
         </td>
     </tr>
 }

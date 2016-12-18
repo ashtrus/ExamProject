@@ -198,10 +198,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AchievementsController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\CompanyRolesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -215,7 +215,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\CompanyRole.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\SkillExperience.cs" />
     <Compile Include="Models\Tag.cs" />
@@ -295,11 +295,6 @@
     <Content Include="Views\Companies\Details.cshtml" />
     <Content Include="Views\Companies\Edit.cshtml" />
     <Content Include="Views\Companies\Index.cshtml" />
-    <Content Include="Views\Roles\Create.cshtml" />
-    <Content Include="Views\Roles\Delete.cshtml" />
-    <Content Include="Views\Roles\Details.cshtml" />
-    <Content Include="Views\Roles\Edit.cshtml" />
-    <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Skills\Create.cshtml" />
     <Content Include="Views\Skills\Delete.cshtml" />
     <Content Include="Views\Skills\Details.cshtml" />
@@ -310,6 +305,11 @@
     <Content Include="Views\Tags\Details.cshtml" />
     <Content Include="Views\Tags\Edit.cshtml" />
     <Content Include="Views\Tags\Index.cshtml" />
+    <Content Include="Views\CompanyRoles\Create.cshtml" />
+    <Content Include="Views\CompanyRoles\Delete.cshtml" />
+    <Content Include="Views\CompanyRoles\Details.cshtml" />
+    <Content Include="Views\CompanyRoles\Edit.cshtml" />
+    <Content Include="Views\CompanyRoles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
