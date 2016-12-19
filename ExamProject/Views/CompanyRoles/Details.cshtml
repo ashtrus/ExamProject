@@ -1,4 +1,4 @@
-﻿@model ExamProject.Models.Role
+﻿@model ExamProject.Models.CompanyRole
 
 @{
     ViewBag.Title = "Details";
@@ -7,15 +7,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Role</h4>
+    <h4>CompanyRole</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => model.Company.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UserId)
+            @Html.DisplayFor(model => model.Company.Name)
         </dd>
 
         <dt>
@@ -35,14 +35,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Experience)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Experience)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.SelectedOn)
         </dt>
 
@@ -53,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RoleId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyRoleId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

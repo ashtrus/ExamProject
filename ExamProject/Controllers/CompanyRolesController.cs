@@ -10,112 +10,112 @@ using ExamProject.Models;
 
 namespace ExamProject.Controllers
 {
-    public class SkillsController : Controller
+    public class CompanyRolesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Skills
+        // GET: CompanyRoles
         public ActionResult Index()
         {
-            var skills = db.Skills.Include(s => s.Company);
-            return View(skills.ToList());
+            var companyRoles = db.CompanyRoles.Include(c => c.Company);
+            return View(companyRoles.ToList());
         }
 
-        // GET: Skills/Details/5
+        // GET: CompanyRoles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+            CompanyRole companyRole = db.CompanyRoles.Find(id);
+            if (companyRole == null)
             {
                 return HttpNotFound();
             }
-            return View(skill);
+            return View(companyRole);
         }
 
-        // GET: Skills/Create
+        // GET: CompanyRoles/Create
         public ActionResult Create()
         {
             ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name");
             return View();
         }
 
-        // POST: Skills/Create
+        // POST: CompanyRoles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SkillId,Name,Description,CompanyId")] Skill skill)
+        public ActionResult Create([Bind(Include = "CompanyRoleId,Title,Description,SelectedOn,CompanyId")] CompanyRole companyRole)
         {
             if (ModelState.IsValid)
             {
-                db.Skills.Add(skill);
+                db.CompanyRoles.Add(companyRole);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name", skill.CompanyId);
-            return View(skill);
+            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name", companyRole.CompanyId);
+            return View(companyRole);
         }
 
-        // GET: Skills/Edit/5
+        // GET: CompanyRoles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+            CompanyRole companyRole = db.CompanyRoles.Find(id);
+            if (companyRole == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name", skill.CompanyId);
-            return View(skill);
+            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name", companyRole.CompanyId);
+            return View(companyRole);
         }
 
-        // POST: Skills/Edit/5
+        // POST: CompanyRoles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SkillId,Name,Description,CompanyId")] Skill skill)
+        public ActionResult Edit([Bind(Include = "CompanyRoleId,Title,Description,SelectedOn,CompanyId")] CompanyRole companyRole)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(skill).State = EntityState.Modified;
+                db.Entry(companyRole).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name", skill.CompanyId);
-            return View(skill);
+            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name", companyRole.CompanyId);
+            return View(companyRole);
         }
 
-        // GET: Skills/Delete/5
+        // GET: CompanyRoles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+            CompanyRole companyRole = db.CompanyRoles.Find(id);
+            if (companyRole == null)
             {
                 return HttpNotFound();
             }
-            return View(skill);
+            return View(companyRole);
         }
 
-        // POST: Skills/Delete/5
+        // POST: CompanyRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Skill skill = db.Skills.Find(id);
-            db.Skills.Remove(skill);
+            CompanyRole companyRole = db.CompanyRoles.Find(id);
+            db.CompanyRoles.Remove(companyRole);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
