@@ -1,0 +1,34 @@
+﻿@model ExamProject.Models.SkillExperience
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SkillExperience</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Skill.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skill.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SkillExperienceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

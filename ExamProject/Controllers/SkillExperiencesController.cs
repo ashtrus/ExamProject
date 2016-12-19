@@ -10,112 +10,112 @@ using ExamProject.Models;
 
 namespace ExamProject.Controllers
 {
-    public class SkillsController : Controller
+    public class SkillExperiencesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Skills
+        // GET: SkillExperiences
         public ActionResult Index()
         {
-            var skills = db.Skills.Include(s => s.Company);
-            return View(skills.ToList());
+            var skillExperiences = db.SkillExperiences.Include(s => s.Skill);
+            return View(skillExperiences.ToList());
         }
 
-        // GET: Skills/Details/5
+        // GET: SkillExperiences/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+            SkillExperience skillExperience = db.SkillExperiences.Find(id);
+            if (skillExperience == null)
             {
                 return HttpNotFound();
             }
-            return View(skill);
+            return View(skillExperience);
         }
 
-        // GET: Skills/Create
+        // GET: SkillExperiences/Create
         public ActionResult Create()
         {
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name");
+            ViewBag.SkillId = new SelectList(db.Skills, "SkillId", "Name");
             return View();
         }
 
-        // POST: Skills/Create
+        // POST: SkillExperiences/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SkillId,Name,Description,CompanyId")] Skill skill)
+        public ActionResult Create([Bind(Include = "SkillExperienceId,SkillId,Experience")] SkillExperience skillExperience)
         {
             if (ModelState.IsValid)
             {
-                db.Skills.Add(skill);
+                db.SkillExperiences.Add(skillExperience);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name", skill.CompanyId);
-            return View(skill);
+            ViewBag.SkillId = new SelectList(db.Skills, "SkillId", "Name", skillExperience.SkillId);
+            return View(skillExperience);
         }
 
-        // GET: Skills/Edit/5
+        // GET: SkillExperiences/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+            SkillExperience skillExperience = db.SkillExperiences.Find(id);
+            if (skillExperience == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name", skill.CompanyId);
-            return View(skill);
+            ViewBag.SkillId = new SelectList(db.Skills, "SkillId", "Name", skillExperience.SkillId);
+            return View(skillExperience);
         }
 
-        // POST: Skills/Edit/5
+        // POST: SkillExperiences/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SkillId,Name,Description,CompanyId")] Skill skill)
+        public ActionResult Edit([Bind(Include = "SkillExperienceId,SkillId,Experience")] SkillExperience skillExperience)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(skill).State = EntityState.Modified;
+                db.Entry(skillExperience).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name", skill.CompanyId);
-            return View(skill);
+            ViewBag.SkillId = new SelectList(db.Skills, "SkillId", "Name", skillExperience.SkillId);
+            return View(skillExperience);
         }
 
-        // GET: Skills/Delete/5
+        // GET: SkillExperiences/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Skill skill = db.Skills.Find(id);
-            if (skill == null)
+            SkillExperience skillExperience = db.SkillExperiences.Find(id);
+            if (skillExperience == null)
             {
                 return HttpNotFound();
             }
-            return View(skill);
+            return View(skillExperience);
         }
 
-        // POST: Skills/Delete/5
+        // POST: SkillExperiences/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Skill skill = db.Skills.Find(id);
-            db.Skills.Remove(skill);
+            SkillExperience skillExperience = db.SkillExperiences.Find(id);
+            db.SkillExperiences.Remove(skillExperience);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
