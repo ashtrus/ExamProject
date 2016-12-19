@@ -32,7 +32,7 @@ namespace ExamProject.Controllers
             //Redirect if not ADMIN 
             if (!User.IsInRole("Admin"))
             {
-                return View(/*notAuth()*/);
+                return View(user/*notAuth()*/);
             }
 
             return View(); //Company 

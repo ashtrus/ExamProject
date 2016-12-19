@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -51,10 +52,34 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyId,Name,Email,Password,Phone,Logo")] Company company)
+        public ActionResult Create( CompanyCreateModel model)
         {
             if (ModelState.IsValid)
             {
+                var company = new Company
+                {
+                    
+                };
+                if (model.Logo != null)
+                {
+                    // handle logo
+                    var folderGuid = Guid.NewGuid().ToString();
+                    var imagesPath = Path.Combine(Server.MapPath("~/UploadedImages/"), folderGuid);
+                    if (!Directory.Exists(imagesPath))
+                    {
+                        Directory.CreateDirectory(imagesPath);
+                    }
+
+                    var imagePath = Path.Combine(imagesPath, model.Logo.FileName);
+                    model.Logo.SaveAs(imagePath);
+                    company.Logo = string.Concat("/UploadedImages/", folderGuid, "/", model.Logo.FileName);
+                }
+
+                company.Name = model.Name;
+                company.Email = model.Email;
+                company.Phone = model.Phone;
+
+
                 db.Companies.Add(company);
                 // find logged in user
                 var myId = User.Identity.GetUserId();
@@ -68,7 +93,7 @@ namespace ExamProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(company);
+            return View(model);
         }
 
         // GET: Companies/Edit/5

@@ -95,6 +95,15 @@ namespace ExamProject.Models
 
     }
 
+    public class RegisterEmployeeViewModel:RegisterViewModel
+    {
+
+        [Required]
+        public int CompanyId { get; set; }
+
+
+    }
+
     public class RegisterCompanyViewModel
     {
 
