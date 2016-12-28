@@ -322,6 +322,7 @@
     <Content Include="Views\SkillExperiences\Details.cshtml" />
     <Content Include="Views\SkillExperiences\Edit.cshtml" />
     <Content Include="Views\SkillExperiences\Index.cshtml" />
+    <Content Include="Views\SkillExperiences\SkillsProgressBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

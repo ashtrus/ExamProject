@@ -128,5 +128,32 @@ namespace ExamProject.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        // GET: SkillExperiences/Details/5 //Dsiplay bootstrap progressbar
+        public ActionResult SkillsProgressBar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SkillExperience skillExperience = db.SkillExperiences.Find(id);
+
+
+            db.SkillExperiences.Find(skillExperience); //Access the skills experience 
+
+            
+
+
+            if (skillExperience == null)
+            {
+                return HttpNotFound();
+            }
+            return View(skillExperience);
+        }
+
+
+
+
     }
 }
