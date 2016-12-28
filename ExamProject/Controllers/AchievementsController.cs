@@ -15,12 +15,14 @@ namespace ExamProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Achievements
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Achievements.ToList());
         }
 
         // GET: Achievements/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace ExamProject.Controllers
         }
 
         // GET: Achievements/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +47,7 @@ namespace ExamProject.Controllers
         // POST: Achievements/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AchievementId,Title,Description")] Achievement achievement)
@@ -59,6 +63,7 @@ namespace ExamProject.Controllers
         }
 
         // GET: Achievements/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +81,7 @@ namespace ExamProject.Controllers
         // POST: Achievements/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AchievementId,Title,Description")] Achievement achievement)
@@ -90,6 +96,7 @@ namespace ExamProject.Controllers
         }
 
         // GET: Achievements/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +112,7 @@ namespace ExamProject.Controllers
         }
 
         // POST: Achievements/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

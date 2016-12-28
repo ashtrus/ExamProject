@@ -15,13 +15,14 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ExamProject.Controllers
 {
+
     [Authorize]
     public class AccountController : Controller
     {
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
-
 
         public AccountController()
         {

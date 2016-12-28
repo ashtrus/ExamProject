@@ -67,6 +67,8 @@ namespace ExamProject.Models
         public System.Data.Entity.DbSet<ExamProject.Models.Skill> Skills { get; set; }
 
         public System.Data.Entity.DbSet<ExamProject.Models.SkillExperience> SkillExperiences { get; set; }
+
+        public System.Data.Entity.DbSet<ExamProject.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
 

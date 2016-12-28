@@ -15,12 +15,14 @@ namespace ExamProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tags
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Tags.ToList());
         }
 
         // GET: Tags/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace ExamProject.Controllers
         }
 
         // GET: Tags/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +47,7 @@ namespace ExamProject.Controllers
         // POST: Tags/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TagId,Title")] Tag tag)
@@ -59,6 +63,7 @@ namespace ExamProject.Controllers
         }
 
         // GET: Tags/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +81,7 @@ namespace ExamProject.Controllers
         // POST: Tags/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TagId,Title")] Tag tag)
@@ -90,6 +96,7 @@ namespace ExamProject.Controllers
         }
 
         // GET: Tags/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +112,7 @@ namespace ExamProject.Controllers
         }
 
         // POST: Tags/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
