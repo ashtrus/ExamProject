@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
+        <th>
+           <h4>Achievment</h4>
+        </th>
         <th></th>
     </tr>
 
@@ -29,6 +32,10 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
+           
+
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AchievementId }) |
             @Html.ActionLink("Details", "Details", new { id=item.AchievementId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.AchievementId })
@@ -37,3 +44,13 @@
 }
 
 </table>
+
+
+
+<br />
+<br />
+
+
+
+
+

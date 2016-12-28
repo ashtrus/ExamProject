@@ -1,11 +1,23 @@
 ﻿@model IEnumerable<ExamProject.Models.SkillExperience>
 
+
+
 @{
     ViewBag.Title = "Index";
+
+   
+
+
 }
+
 <br />
 <br />
-<h2>Skills</h2>
+<br />
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading"> Skill Expereince for Employees  </div>
+    <div class="panel-body">Modifing the skills by Adding, Editing or Deleting the specific skill for a employee, with an unique ID </div>
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -18,10 +30,17 @@
         <th>
             @Html.DisplayNameFor(model => model.Experience)
         </th>
-        <th></th>
+        <th>
+          
+        </th>
+        <th><h4>Skills Experience  </h4></th>
+        <th><h4>Achivements </h4></th>
     </tr>
 
 @foreach (var item in Model) {
+
+
+
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Skill.Name)
@@ -29,6 +48,53 @@
         <td>
             @Html.DisplayFor(modelItem => item.Experience)
         </td>
+        <td>
+          
+        </td>
+        <td>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:@Html.DisplayFor(modelItem => item.Experience)%">
+                    @Html.DisplayFor(modelItem => item.Experience) (JavaScript Skills Points)
+                </div>
+            </div>
+        </td>
+        <td>
+            
+            <div class="ach-icon" id="1-year">
+              
+
+            @if (item.Experience < 1 && item.Experience <= 5 )
+            {
+                <img src="https://maxcdn.icons8.com/Color/PNG/24/Sports/trophy-24.png" title="Trophy" width="24">
+            }
+            else if (item.Experience < 5 && item.Experience <= 10)
+            {
+                <div class="ach-icon" id="2-5-year"><img src="https://maxcdn.icons8.com/iOS7/PNG/25/Sports/medal2_filled-25.png" title="Medal First Place Filled" width="25"></div>
+            }
+            else if (item.Experience >= 10 && item.Experience <= 25)
+            {
+                <div class="ach-icon id="5-10-year"><img src="https://maxcdn.icons8.com/Color/PNG/24/Business/bullish-24.png" title="Bullish" width="24"> </div>
+            }
+            else if (item.Experience <= 25 && item.Experience <= 50)
+            {
+                <div class="ach-icon id="10-20-year"><img src="https://maxcdn.icons8.com/Color/PNG/24/City/police_badge-24.png" title="Police Badge" width="24"> </div>
+            }
+            else if (item.Experience <= 50 && item.Experience <= 75)
+            {
+                <div class="ach-icon id="30-year"><img src="https://maxcdn.icons8.com/Color/PNG/24/Cinema/batman_old-24.png" title="Batman Old" width="24"> </div>
+            }
+            else if (item.Experience < 75)
+            {
+                <div class="ach-icon id="50-year"><img src="https://maxcdn.icons8.com/Color/PNG/24/Military/knight_shield-24.png" title="Knight Shield" width="24"> </div>
+
+            }
+
+
+            </div>
+
+        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SkillExperienceId }) |
             @Html.ActionLink("Details", "Details", new { id=item.SkillExperienceId }) |
@@ -39,5 +105,10 @@
 
 </table>
 
-@Html.Partial("SkillsProgressBar")
+
+
+
+
+
+
 

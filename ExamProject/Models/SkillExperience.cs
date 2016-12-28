@@ -13,5 +13,6 @@ namespace ExamProject.Models
         public virtual Skill Skill { get; set; }
         public virtual Employee Employee{ get; set; }
         public int Experience { get; set; }
+        
     }
 }

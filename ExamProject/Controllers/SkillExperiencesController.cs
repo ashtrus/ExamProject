@@ -18,6 +18,10 @@ namespace ExamProject.Controllers
         public ActionResult Index()
         {
             var skillExperiences = db.SkillExperiences.Include(s => s.Skill);
+
+
+    
+
             return View(skillExperiences.ToList());
         }
 
