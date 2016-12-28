@@ -15,7 +15,6 @@ namespace ExamProject.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Skills
-        [Authorize]
         public ActionResult Index()
         {
             var skills = db.Skills.Include(s => s.Company);
@@ -23,7 +22,6 @@ namespace ExamProject.Controllers
         }
 
         // GET: Skills/Details/5
-        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +37,6 @@ namespace ExamProject.Controllers
         }
 
         // GET: Skills/Create
-        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.CompanyId = new SelectList(db.Companies, "CompanyId", "Name");
@@ -49,7 +46,6 @@ namespace ExamProject.Controllers
         // POST: Skills/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "SkillId,Name,Description,CompanyId")] Skill skill)
@@ -66,7 +62,6 @@ namespace ExamProject.Controllers
         }
 
         // GET: Skills/Edit/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,7 +80,6 @@ namespace ExamProject.Controllers
         // POST: Skills/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SkillId,Name,Description,CompanyId")] Skill skill)
@@ -101,7 +95,6 @@ namespace ExamProject.Controllers
         }
 
         // GET: Skills/Delete/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,7 +110,6 @@ namespace ExamProject.Controllers
         }
 
         // POST: Skills/Delete/5
-        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

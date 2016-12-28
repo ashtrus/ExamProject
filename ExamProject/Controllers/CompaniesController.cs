@@ -12,9 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ExamProject.Controllers
 {
-
-    [Authorize(Roles = "Admin")]
-
+    [Authorize]
     public class CompaniesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -110,11 +108,7 @@ namespace ExamProject.Controllers
             {
                 return HttpNotFound();
             }
-            var myId = User.Identity.GetUserId();
-            if (company.Administrators.All(x => x.Id != myId))
-                return new HttpUnauthorizedResult("no luck");
-
-            return View(CompanyCreateModel.Init(company));
+            return View(company);
         }
 
         // POST: Companies/Edit/5
@@ -122,38 +116,17 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(CompanyCreateModel model)
+        public ActionResult Edit([Bind(Include = "CompanyId,Name,Email,Password,Phone,Logo")] Company company)
         {
             if (ModelState.IsValid)
             {
-                var company = db.Companies.First(x => x.CompanyId == model.CompanyId);
-                var myId = User.Identity.GetUserId();
-                if (company.Administrators.All(x => x.Id != myId))
-                    return new HttpUnauthorizedResult("no luck");
+                
 
-                if (model.Logo != null)
-                {
-                    // handle logo
-                    var folderGuid = Guid.NewGuid().ToString();
-                    var imagesPath = Path.Combine(Server.MapPath("~/UploadedImages/"), folderGuid);
-                    if (!Directory.Exists(imagesPath))
-                    {
-                        Directory.CreateDirectory(imagesPath);
-                    }
-
-                    var imagePath = Path.Combine(imagesPath, model.Logo.FileName);
-                    model.Logo.SaveAs(imagePath);
-                    company.Logo = string.Concat("/UploadedImages/", folderGuid, "/", model.Logo.FileName);
-                }
-
-                company.Name = model.Name;
-                company.Email = model.Email;
-                company.Phone = model.Phone;
-
+                db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return View(company);
         }
 
         // GET: Companies/Delete/5

@@ -217,7 +217,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\CompanyRole.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\SkillExperience.cs" />
     <Compile Include="Models\Tag.cs" />
