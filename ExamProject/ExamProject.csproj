@@ -225,6 +225,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyCreateModel.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeCreateModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\CompanyRole.cs" />
