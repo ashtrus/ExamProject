@@ -209,6 +209,7 @@
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\CompanyRolesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\ExperienceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SkillExperiencesController.cs" />
@@ -333,6 +334,7 @@
     <Content Include="Views\SkillExperiences\Index.cshtml" />
     <Content Include="Views\Account\Indexxxx.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\Experience\ForCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
