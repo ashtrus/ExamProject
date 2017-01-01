@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,16 +47,41 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeId,Firstname,Lastname,Email,Phone,Picture")] Employee employee)
+        public ActionResult Create(EmployeeCreateModel model)
         {
             if (ModelState.IsValid)
             {
+                var employee = new Employee();
+                if (model.Picture != null)
+                {
+                    // handle logo
+                    var folderGuid = Guid.NewGuid().ToString();
+                    var imagesPath = Path.Combine(Server.MapPath("~/UploadedImages/"), folderGuid);
+                    if (!Directory.Exists(imagesPath))
+                    {
+                        Directory.CreateDirectory(imagesPath);
+                    }
+
+                    var imagePath = Path.Combine(imagesPath, model.Picture.FileName);
+                    model.Picture.SaveAs(imagePath);
+                    employee.Picture = string.Concat("/UploadedImages/", folderGuid, "/", model.Picture.FileName);
+                }
+
+                // remap
+
+                employee.Firstname = model.Firstname;
+                employee.Email = model.Email;
+                employee.Lastname = model.Lastname;
+                employee.Phone = model.Phone;
+
+
+
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(employee);
+            return View(model);
         }
 
         // GET: Employees/Edit/5

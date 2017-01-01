@@ -230,6 +230,16 @@ namespace ExamProject.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Indexxxx()
+        {
+            var context = new ApplicationDbContext();
+
+            var allUsers = context.Users.ToList();
+
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
