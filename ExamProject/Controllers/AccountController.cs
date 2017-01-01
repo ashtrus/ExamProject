@@ -608,11 +608,22 @@ namespace ExamProject.Controllers
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 
+                // check if role exists
+                if (!RoleManager.RoleExists("Employee"))
+                {
+                    await RoleManager.CreateAsync(new IdentityRole { Name = "Employee" });
+                }
 
 
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    if (!UserManager.IsInRole(user.Id, "Employee"))
+                    {
+                        UserManager.AddToRole(user.Id, "Employee");
+                    }
+
 
                     // handle the image file
                     var folderGuid = Guid.NewGuid().ToString();
