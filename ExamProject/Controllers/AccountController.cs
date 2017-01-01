@@ -607,22 +607,12 @@ namespace ExamProject.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
-                // check if role exists
-                if (!RoleManager.RoleExists("Admin"))
-                {
-                    await RoleManager.CreateAsync(new IdentityRole { Name = "Admin" });
-                }
+
 
 
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-
-                    if (!UserManager.IsInRole(user.Id, "Admin"))
-                    {
-                        UserManager.AddToRole(user.Id, "Admin");
-                    }
 
                     // handle the image file
                     var folderGuid = Guid.NewGuid().ToString();
