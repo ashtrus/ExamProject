@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -202,6 +204,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RoleCommentsController.cs" />
     <Compile Include="Controllers\SkillExperiencesController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
@@ -209,6 +212,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Managers\ApplicationRoleManager.cs" />
+    <Compile Include="Migrations\201612281401075_1.cs" />
+    <Compile Include="Migrations\201612281401075_1.Designer.cs">
+      <DependentUpon>201612281401075_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701011441297_ChangeRoleComment1.cs" />
+    <Compile Include="Migrations\201701011441297_ChangeRoleComment1.Designer.cs">
+      <DependentUpon>201701011441297_ChangeRoleComment1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Achievement.cs" />
@@ -218,6 +229,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\CompanyRole.cs" />
+    <Compile Include="Models\RoleComment.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\SkillExperience.cs" />
     <Compile Include="Models\Tag.cs" />
@@ -318,6 +330,12 @@
     <Content Include="Views\SkillExperiences\Details.cshtml" />
     <Content Include="Views\SkillExperiences\Edit.cshtml" />
     <Content Include="Views\SkillExperiences\Index.cshtml" />
+    <Content Include="Views\RoleComments\Create.cshtml" />
+    <Content Include="Views\RoleComments\Delete.cshtml" />
+    <Content Include="Views\RoleComments\Details.cshtml" />
+    <Content Include="Views\RoleComments\Edit.cshtml" />
+    <Content Include="Views\RoleComments\Index.cshtml" />
+    <Content Include="Views\Shared\_CreateRoleComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +347,14 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612281401075_1.resx">
+      <DependentUpon>201612281401075_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701011441297_ChangeRoleComment1.resx">
+      <DependentUpon>201701011441297_ChangeRoleComment1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

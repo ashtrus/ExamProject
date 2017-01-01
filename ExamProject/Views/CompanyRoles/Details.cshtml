@@ -1,4 +1,7 @@
 ﻿@model ExamProject.Models.CompanyRole
+@using Microsoft.AspNet.Identity
+@using ExamProject.Models
+
 
 @{
     ViewBag.Title = "Details";
@@ -48,3 +51,31 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyRoleId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleComments)
+        </th>
+    </tr>
+
+    @foreach (var comment in Model.RoleComments)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => comment.Body)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@{
+    var roleComment = new RoleComment();
+    roleComment.CompanyRoleId = @Model.CompanyRoleId;
+}
+@Html.Partial("_CreateRoleComment", roleComment)
+
+
+
+
