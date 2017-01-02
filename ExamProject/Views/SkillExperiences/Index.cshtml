@@ -35,6 +35,7 @@
         </th>
         <th><h4>Skills Experience  </h4></th>
         <th><h4>Achivements </h4></th>
+        <th><h4>Company Experience </h4></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -93,6 +94,9 @@
 
             </div>
 
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SkillCompanyExperience)
         </td>
 
         <td>

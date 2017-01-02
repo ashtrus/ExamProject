@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201612281237041_achive.Designer.cs">
       <DependentUpon>201612281237041_achive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701021111063_addCExp.cs" />
+    <Compile Include="Migrations\201701021111063_addCExp.Designer.cs">
+      <DependentUpon>201701021111063_addCExp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Achievement.cs" />
@@ -359,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612281237041_achive.resx">
       <DependentUpon>201612281237041_achive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701021111063_addCExp.resx">
+      <DependentUpon>201701021111063_addCExp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -9,6 +9,7 @@ namespace ExamProject.Models
     {
         public int SkillExperienceId { get; set; }
         public int SkillId { get; set; }
+        public int SkillCompanyExperience { get; set; }
         //public int EmployeeId { get; set; }
         public virtual Skill Skill { get; set; }
         public virtual Employee Employee{ get; set; }
