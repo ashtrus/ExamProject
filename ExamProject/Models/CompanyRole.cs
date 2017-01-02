@@ -11,6 +11,9 @@ namespace ExamProject.Models
         //public int UserId { get; set; } //User 
         public string Title { get; set; } // title 
         public string Description { get; set; } //Desc
+        public string FirstFutureFocus { get; set; }    //Future focous skils 1. 
+        public string SecondFutureFocus { get; set; }   //Future focous skils 2. 
+        public string ThirdFutureFocus { get; set; }    //Future focous skils 3. 
         //public int Experience { get; set; }  // number of years
         public DateTime SelectedOn { get; set; }  // date when role was selected
         public int CompanyId { get; set; }

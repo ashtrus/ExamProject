@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201701021111063_addCExp.Designer.cs">
       <DependentUpon>201701021111063_addCExp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701021155172_FutureFocus.cs" />
+    <Compile Include="Migrations\201701021155172_FutureFocus.Designer.cs">
+      <DependentUpon>201701021155172_FutureFocus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Achievement.cs" />
@@ -366,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701021111063_addCExp.resx">
       <DependentUpon>201701021111063_addCExp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701021155172_FutureFocus.resx">
+      <DependentUpon>201701021155172_FutureFocus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
