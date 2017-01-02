@@ -33,6 +33,9 @@ namespace ExamProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             SkillExperience skillExperience = db.SkillExperiences.Find(id);
+
+          
+
             if (skillExperience == null)
             {
                 return HttpNotFound();
@@ -43,7 +46,8 @@ namespace ExamProject.Controllers
         // GET: SkillExperiences/Create
         public ActionResult Create()
         {
-            ViewBag.SkillId = new SelectList(db.Skills, "SkillId", "Name");
+            ViewBag.SkillId = new SelectList(db.Skills, "SkillId", "Name", "SkillCompanyExperience");
+
             return View();
         }
 
@@ -52,7 +56,7 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SkillExperienceId,SkillId,Experience")] SkillExperience skillExperience)
+        public ActionResult Create([Bind(Include = "SkillExperienceId,SkillId,Experience,SkillCompanyExperience")] SkillExperience skillExperience)
         {
             if (ModelState.IsValid)
             {
