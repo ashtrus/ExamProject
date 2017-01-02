@@ -90,7 +90,7 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SkillExperienceId,SkillId,Experience")] SkillExperience skillExperience)
+        public ActionResult Edit([Bind(Include = "SkillExperienceId,SkillId,Experience ,SkillCompanyExperience")] SkillExperience skillExperience)
         {
             if (ModelState.IsValid)
             {
