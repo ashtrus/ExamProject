@@ -43,7 +43,7 @@ namespace ExamProject.Models
 
 
     }
-
+  
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext() //constructor
@@ -67,6 +67,8 @@ namespace ExamProject.Models
         public System.Data.Entity.DbSet<ExamProject.Models.Skill> Skills { get; set; }
 
         public System.Data.Entity.DbSet<ExamProject.Models.SkillExperience> SkillExperiences { get; set; }
+
+        public System.Data.Entity.DbSet<ExamProject.Models.RoleComment> RoleComments { get; set; }
     }
 }
 

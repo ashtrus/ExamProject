@@ -1,0 +1,19 @@
+﻿@using ExamProject.Models
+@model IList<ExamProject.Models.SkillExperience>
+@{
+    ViewBag.Title = "ForCompany";
+
+
+}
+
+<h2> Skills For Company</h2>
+
+<ul>
+    @foreach (var skill in Model)
+    {
+        <li>
+            @skill.Skill.Name - @skill.Experience
+        </li>
+    }
+</ul>
+

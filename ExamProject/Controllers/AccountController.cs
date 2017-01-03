@@ -230,6 +230,16 @@ namespace ExamProject.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Indexxxx()
+        {
+            var context = new ApplicationDbContext();
+
+            var allUsers = context.Users.ToList();
+
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -597,10 +607,11 @@ namespace ExamProject.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 // check if role exists
-                if (!RoleManager.RoleExists("Admin"))
+                if (!RoleManager.RoleExists("Employee"))
                 {
-                    await RoleManager.CreateAsync(new IdentityRole { Name = "Admin" });
+                    await RoleManager.CreateAsync(new IdentityRole { Name = "Employee" });
                 }
 
 
@@ -608,11 +619,11 @@ namespace ExamProject.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-
-                    if (!UserManager.IsInRole(user.Id, "Admin"))
+                    if (!UserManager.IsInRole(user.Id, "Employee"))
                     {
-                        UserManager.AddToRole(user.Id, "Admin");
+                        UserManager.AddToRole(user.Id, "Employee");
                     }
+
 
                     // handle the image file
                     var folderGuid = Guid.NewGuid().ToString();

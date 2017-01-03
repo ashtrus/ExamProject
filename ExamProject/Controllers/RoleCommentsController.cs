@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,132 +10,107 @@ using ExamProject.Models;
 
 namespace ExamProject.Controllers
 {
-    public class EmployeesController : Controller
+    public class RoleCommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Employees
+        // GET: RoleComments
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            return View(db.RoleComments.ToList());
         }
 
-        // GET: Employees/Details/5
+        // GET: RoleComments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            RoleComment roleComment = db.RoleComments.Find(id);
+            if (roleComment == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(roleComment);
         }
 
-        // GET: Employees/Create
+        // GET: RoleComments/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: RoleComments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(EmployeeCreateModel model)
+        public ActionResult Create([Bind(Include = "Body,CompanyRoleId")] RoleComment roleComment)
         {
             if (ModelState.IsValid)
             {
-                var employee = new Employee();
-                if (model.Picture != null)
-                {
-                    // handle logo
-                    var folderGuid = Guid.NewGuid().ToString();
-                    var imagesPath = Path.Combine(Server.MapPath("~/UploadedImages/"), folderGuid);
-                    if (!Directory.Exists(imagesPath))
-                    {
-                        Directory.CreateDirectory(imagesPath);
-                    }
-
-                    var imagePath = Path.Combine(imagesPath, model.Picture.FileName);
-                    model.Picture.SaveAs(imagePath);
-                    employee.Picture = string.Concat("/UploadedImages/", folderGuid, "/", model.Picture.FileName);
-                }
-
-                // remap
-
-                employee.Firstname = model.Firstname;
-                employee.Email = model.Email;
-                employee.Lastname = model.Lastname;
-                employee.Phone = model.Phone;
-
-
-
-                db.Employees.Add(employee);
+                db.RoleComments.Add(roleComment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(model);
+            return View(roleComment);
         }
 
-        // GET: Employees/Edit/5
+        // GET: RoleComments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            RoleComment roleComment = db.RoleComments.Find(id);
+            if (roleComment == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(roleComment);
         }
 
-        // POST: Employees/Edit/5
+        // POST: RoleComments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeId,Firstname,Lastname,Email,Phone,Picture")] Employee employee)
+        public ActionResult Edit([Bind(Include = "RoleCommentId,Body")] RoleComment roleComment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
+                db.Entry(roleComment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(employee);
+            return View(roleComment);
         }
 
-        // GET: Employees/Delete/5
+        // GET: RoleComments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            RoleComment roleComment = db.RoleComments.Find(id);
+            if (roleComment == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(roleComment);
         }
 
-        // POST: Employees/Delete/5
+        // POST: RoleComments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
+            RoleComment roleComment = db.RoleComments.Find(id);
+            db.RoleComments.Remove(roleComment);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
