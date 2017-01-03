@@ -16,6 +16,8 @@ namespace ExamProject.Models
 
         public int CompanyRoleId { get; set; }
 
+        public string Commentator { get; set; }
+
         [ForeignKey("CompanyRoleId")]
         public virtual CompanyRole CompanyRole { get; set; }
 
