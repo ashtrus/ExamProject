@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ExamProject.Models
 {
@@ -9,6 +10,7 @@ namespace ExamProject.Models
         //    SkillExperience = new List<SkillExperience>();
         //}
         public int SkillId { get; set; }
+        [Display(Name = "Skills")]
         public string Name { get; set; }
         public string Description { get; set; }
         public int CompanyId { get; set; }

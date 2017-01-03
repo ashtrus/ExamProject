@@ -48,7 +48,7 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Description,CompanyId")] CompanyRole companyRole)
+        public ActionResult Create([Bind(Include = "Title,Description,CompanyId,FirstFutureFocus, SecondFutureFocus, ThirdFutureFocus")] CompanyRole companyRole)
         {
             companyRole.SelectedOn = DateTime.Now;
             //companyRole.CompanyId = (Session["Company"] as Company).CompanyId; //get company ID from the company object in the session
@@ -84,7 +84,7 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyRoleId,Title,Description,SelectedOn,CompanyId")] CompanyRole companyRole)
+        public ActionResult Edit([Bind(Include = "CompanyRoleId,Title,Description,SelectedOn,CompanyId, FirstFutureFocus, SecondFutureFocus,ThirdFutureFocus")] CompanyRole companyRole)
         {
             if (ModelState.IsValid)
             {

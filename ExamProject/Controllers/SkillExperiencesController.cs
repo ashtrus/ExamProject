@@ -18,6 +18,10 @@ namespace ExamProject.Controllers
         public ActionResult Index()
         {
             var skillExperiences = db.SkillExperiences.Include(s => s.Skill);
+
+
+    
+
             return View(skillExperiences.ToList());
         }
 
@@ -29,6 +33,9 @@ namespace ExamProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             SkillExperience skillExperience = db.SkillExperiences.Find(id);
+
+          
+
             if (skillExperience == null)
             {
                 return HttpNotFound();
@@ -39,7 +46,8 @@ namespace ExamProject.Controllers
         // GET: SkillExperiences/Create
         public ActionResult Create()
         {
-            ViewBag.SkillId = new SelectList(db.Skills, "SkillId", "Name");
+            ViewBag.SkillId = new SelectList(db.Skills, "SkillId", "Name", "SkillCompanyExperience");
+
             return View();
         }
 
@@ -48,7 +56,7 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SkillExperienceId,SkillId,Experience")] SkillExperience skillExperience)
+        public ActionResult Create([Bind(Include = "SkillExperienceId,SkillId,Experience,SkillCompanyExperience")] SkillExperience skillExperience)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +90,7 @@ namespace ExamProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SkillExperienceId,SkillId,Experience")] SkillExperience skillExperience)
+        public ActionResult Edit([Bind(Include = "SkillExperienceId,SkillId,Experience ,SkillCompanyExperience")] SkillExperience skillExperience)
         {
             if (ModelState.IsValid)
             {
@@ -128,5 +136,32 @@ namespace ExamProject.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        // GET: SkillExperiences/Details/5 //Dsiplay bootstrap progressbar
+        public ActionResult SkillsProgressBar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SkillExperience skillExperience = db.SkillExperiences.Find(id);
+
+
+            db.SkillExperiences.Find(skillExperience); //Access the skills experience 
+
+            
+
+
+            if (skillExperience == null)
+            {
+                return HttpNotFound();
+            }
+            return View(skillExperience);
+        }
+
+
+
+
     }
 }
