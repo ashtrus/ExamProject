@@ -3,11 +3,27 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Exceptionaires</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
   
+    <style>
+        #img-years{
+            width:20%;
+        }
 
+       .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+           font-size:1.5em; 
+       }
+
+       td, th{
+           font-size:1.7em;
+       }
+
+       .progess {
+           height:25px; 
+       }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -43,7 +59,7 @@
             <p>&copy; @DateTime.Now.Year - Exceptionaires</p>
         </footer>
     </div>
-
+    <script src="https://use.fontawesome.com/347104fa6f.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/achviement")
     @Scripts.Render("~/bundles/bootstrap")
