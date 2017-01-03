@@ -48,14 +48,16 @@ namespace ExamProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Body,CompanyRoleId")] RoleComment roleComment)
         {
+            roleComment.Commentator = User.Identity.Name;
             if (ModelState.IsValid)
             {
                 db.RoleComments.Add(roleComment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var test = roleComment.CompanyRoleId;
+                return RedirectToAction("Details/" + test, "CompanyRoles");
             }
 
-            return View(roleComment);
+            return View();
         }
 
         // GET: RoleComments/Edit/5

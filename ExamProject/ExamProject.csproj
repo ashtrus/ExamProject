@@ -231,6 +231,14 @@
     <Compile Include="Migrations\201701011441297_ChangeRoleComment1.Designer.cs">
       <DependentUpon>201701011441297_ChangeRoleComment1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701021543191_CommentatorProperty.cs" />
+    <Compile Include="Migrations\201701021543191_CommentatorProperty.Designer.cs">
+      <DependentUpon>201701021543191_CommentatorProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701022021595_changeistype.cs" />
+    <Compile Include="Migrations\201701022021595_changeistype.Designer.cs">
+      <DependentUpon>201701022021595_changeistype.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Achievement.cs" />
@@ -371,6 +379,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701011441297_ChangeRoleComment1.resx">
       <DependentUpon>201701011441297_ChangeRoleComment1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701021543191_CommentatorProperty.resx">
+      <DependentUpon>201701021543191_CommentatorProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701022021595_changeistype.resx">
+      <DependentUpon>201701022021595_changeistype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -61,8 +61,11 @@
 
     @foreach (var comment in Model.RoleComments)
     {
+       
         <tr>
             <td>
+                <h4><strong>User @Html.DisplayFor(modelItem => comment.Commentator):</strong></h4>
+
                 @Html.DisplayFor(modelItem => comment.Body)
             </td>
         </tr>
