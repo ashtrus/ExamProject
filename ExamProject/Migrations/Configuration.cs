@@ -14,7 +14,7 @@ namespace ExamProject.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<ExamProject.Models.ApplicationDbContext>
     {
-        public Configuration()
+        public Configuration() 
         {
             AutomaticMigrationsEnabled = true;
         }
