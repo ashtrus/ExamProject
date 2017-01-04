@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+
 }
 
 <h2>Index</h2>
@@ -16,10 +17,13 @@
     <script type="text/javascript">
         $(function () {
             var userName = '@ViewBag.UserName';
+            var userCompany = '@ViewBag.CompanyId';
             // Declare a proxy to reference the hub.
             var chat = $.connection.chatHub;
             // Create a function that the hub can call to broadcast messages.
-            chat.client.broadcastMessage = function (name, message) {
+            chat.client.broadcastMessage = function (name, company, message) {
+                if (company != userCompany)
+                    return;
                 // Html encode display name and message.
                 var encodedName = $('<div />').text(name).html();
                 var encodedMsg = $('<div />').text(message).html();
@@ -34,7 +38,7 @@
             $.connection.hub.start().done(function () {
                 $('#sendmessage').click(function () {
                     // Call the Send method on the hub.
-                    chat.server.send(userName, $('#message').val());
+                    chat.server.send(userName, userCompany, $('#message').val());
                     // Clear text box and reset focus for next comment.
                     $('#message').val('').focus();
                 });
