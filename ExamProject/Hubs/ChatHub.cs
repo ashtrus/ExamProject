@@ -11,7 +11,7 @@ namespace ExamProject.Hubs
         public void Send(string name, int company, string message)
         {
             // Call the broadcastMessage method to update clients.
-            Clients.All.broadcastMessage(name, company, message);
+            Clients.All.broadcastMessage(name, company, message, DateTime.Now.ToString("HH:mm:ss"));
         }
     }
 }

@@ -6,9 +6,44 @@
 
 <h2>Index</h2>
 <h3>Welcome to chat, @ViewBag.UserName</h3>
+<link href="~/Content/animate.css" rel="stylesheet" />
+<style>
+    #discussion li {
+        max-width: 20em;
+        /*background-color: red;*/
+        padding: 1em;
+        margin-bottom: 1em;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        border: 6px solid #A1FFD0;
+        background: rgba(0,227,151,0.5);
+        -webkit-box-shadow: #B3B3B3 11px 11px 11px;
+        -moz-box-shadow: #B3B3B3 11px 11px 11px;
+        box-shadow: #B3B3B3 11px 11px 11px;
+    }
+
+    #discussion .me {
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        border: 6px solid #FF99B4;
+        background: rgba(227,0,0,0.5);
+        -webkit-box-shadow: #B3B3B3 11px 11px 11px;
+        -moz-box-shadow: #B3B3B3 11px 11px 11px;
+        box-shadow: #B3B3B3 11px 11px 11px;
+
+        text-align: right;
+    }
+
+    #discussion{
+        list-style: none;
+    }
+</style>
 <div class="chatBox">
     <input type="text" id="message" />
     <input type="button" id="sendmessage" value="Send" />
+    <p>Messages:</p>
     <ul id="discussion"></ul>
 </div>
 @section scripts{
@@ -20,17 +55,19 @@
             // Declare a proxy to reference the hub.
             var chat = $.connection.chatHub;
             // Create a function that the hub can call to broadcast messages.
-            chat.client.broadcastMessage = function (name, company, message) {
+            chat.client.broadcastMessage = function (name, company, message, time) {
                 if (company != userCompany)
                     return;
                 // Html encode display name and message.
                 var encodedName = $('<div />').text(name).html();
                 var encodedMsg = $('<div />').text(message).html();
+                var classToAdd = "";
+                if (name == userName) classToAdd = "me";
                 // Add the message to the page.
-                $('#discussion').append('<li><strong>' + encodedName
-                    + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+                $('#discussion').prepend('<li class="' + classToAdd + ' animated bounceInDown"><strong>' + encodedName
+                    + '</strong> ('+time+'):&nbsp;&nbsp;<br>' + encodedMsg + '</li>');
             };
-            
+
             // Set initial focus to message input box.
             $('#message').focus();
             // Start the connection.
