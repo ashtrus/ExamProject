@@ -1,4 +1,4 @@
-﻿@model ExamProject.Models.Employee
+﻿@model ExamProject.Models.ApplicationUser
 
 @{
     ViewBag.Title = "Details";
@@ -53,6 +53,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

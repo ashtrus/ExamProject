@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExamProject.Models.Employee>
+﻿@model IEnumerable<ExamProject.Models.ApplicationUser>
 
 @{
     ViewBag.Title = "Index";
@@ -44,9 +44,8 @@
             <img src="@item.Picture" height="50"/>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
         </td>
     </tr>
 }
