@@ -10,6 +10,7 @@ using ExamProject.Models;
 
 namespace ExamProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TagsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

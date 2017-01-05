@@ -11,6 +11,7 @@ using ExamProject.Models;
 
 namespace ExamProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EmployeesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

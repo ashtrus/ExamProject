@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ExamProject.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CompaniesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

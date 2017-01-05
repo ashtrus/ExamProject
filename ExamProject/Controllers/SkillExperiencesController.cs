@@ -10,6 +10,7 @@ using ExamProject.Models;
 
 namespace ExamProject.Controllers
 {
+    [Authorize]
     public class SkillExperiencesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
